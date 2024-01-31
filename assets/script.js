@@ -37,4 +37,4 @@ $("#search-button").on("click", function (event) {
 
 // function to create fav recipe list/page - use quiz challenge as guide
 
-// add another api for better quality image display
+// add another API for better quality image display
