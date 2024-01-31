@@ -10,7 +10,7 @@ function getRecipe() {
             return response.json();   
         })
         .then(function (data) {
-            console.log(data);
+            // console.log(data);
             $('.card-title').text(data.hits[0].recipe.label);
             $('img').attr('src', data.hits[0].recipe.image);
         });
