@@ -2,6 +2,7 @@ APIkey = "e7240985d24e036814dfc3709dd38d80";
 var mainContainer = $("#main-container");
 var recipeContainer = $(".col-lg-9 pb-3");
 
+
 function getRecipe() {
   var search = $("#search-input").val().trim();
   queryURL =
@@ -19,7 +20,8 @@ function getRecipe() {
             var dataLength = data.hits.length;
         
             for (var i = 0; i < dataLength && i < 3; i++) {
-                
+                const result = data.hits[i];
+
                 var cardContainer = $("<div>");
                 cardContainer.addClass("col-lg-9 pb-3");
                 // $('img').attr('src', data.hits[i].recipe.image);
@@ -35,23 +37,27 @@ function getRecipe() {
                 console.log(image);
                 // image.addClass("");
                 // image.attr('class', 'card-img-top')
-                image.attr('src', data.hits[i].recipe.image);
+                image.attr('src', result.recipe.image);
                 
 
                 var cardBody = $("<div>");
                 var cardTitle = $("<h5>");
-                cardTitle.text(data.hits[i].recipe.label)
+                cardTitle.text(result.recipe.label)
                 cardTitle.addClass("card-title");
                 var cardText = $("<p>");
-                cardText.text("Type of dish: " + data.hits[i].recipe.dishType)
+                cardText.text("Type of dish: " + result.recipe.dishType)
                 var descriptin = $("<p>");
-                var ingredients = data.hits[i].recipe.ingredients.forEach(element => {
-                    console.log(element);
-                    descriptin.text(element.text);
+                var descriptinList = [];
+                result.recipe.ingredients.forEach(ingredient => {
+                    descriptinList.push(" "+ ingredient.text);
+                    console.log(descriptinList);
+                    descriptin.text("Ingredients: "+ descriptinList);
                     
                     
                 });
-                console.log(ingredients);
+
+            
+                // console.log(ingredients);
                 
                 // descriptin.text("Ingredients: " + data.hits[i].recipe.ingredients[i].food)
                 cardText.addClass("card-text");
