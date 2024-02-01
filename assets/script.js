@@ -113,9 +113,3 @@ createButtonSearches();
 
 // function to create fav recipe list/page - use quiz challenge as guide
 
-$('#search-button').on('click', function(event) {
-    event.preventDefault();
-    var search = $('#search-input').val().trim();
-    if (!search) return;
-    getRecipe();
-})
