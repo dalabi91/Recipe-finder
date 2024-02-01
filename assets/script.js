@@ -1,6 +1,8 @@
 APIkey = "e7240985d24e036814dfc3709dd38d80";
 var mainContainer = $("#main-container");
 var recipeContainer = $(".col-lg-9 pb-3");
+// Delete this once once clear function is declared. 
+window.localStorage.clear();
 
 function getRecipe() {
   var search = $("#search-input").val().trim();
@@ -16,7 +18,7 @@ function getRecipe() {
     .then(function (data) {
       console.log(data);
       console.log(data.hits.length);
-      saveSearch();
+      saveSearch(search);
       var dataLength = data.hits.length;
 
       for (var i = 0; i < dataLength && i < 3; i++) {
@@ -24,19 +26,15 @@ function getRecipe() {
 
         var cardContainer = $("<div>");
         cardContainer.addClass("col-lg-9 pb-3");
-        // $('img').attr('src', data.hits[i].recipe.image);
 
         var cardCardContainerSection = $("<section>");
         cardCardContainerSection.addClass("row mt-3");
-        console.log(cardCardContainerSection);
 
         var card = $("<div>");
         card.addClass("card mb-3");
 
         var image = $("<img>");
-        console.log(image);
-        // image.addClass("");
-        // image.attr('class', 'card-img-top')
+        image.attr('class', 'card-img-top')
         image.attr("src", result.recipe.image);
 
         var cardBody = $("<div>");
@@ -49,11 +47,9 @@ function getRecipe() {
         var descriptinList = [];
         result.recipe.ingredients.forEach((ingredient) => {
           descriptinList.push(" " + ingredient.text);
-          console.log(descriptinList);
           descriptin.text("Ingredients: " + descriptinList);
         });
 
-        // console.log(ingredients);
 
         // descriptin.text("Ingredients: " + data.hits[i].recipe.ingredients[i].food)
         cardText.addClass("card-text");
@@ -105,7 +101,9 @@ function createButtonSearches() {
   // function to loop over the searches and create buttons
   for (let i = searches.length - 1; i >= 0; i--) {
     //use let in for loops
-    var button = $("<button>").text(searches[i]);
+    var button = $("<button>");
+    console.log(searches[i]);
+    button.text(searches[i]);
     button.on("click", function () {});
     $("#history").append(button);
   }
