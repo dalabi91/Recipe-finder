@@ -3,6 +3,7 @@ var mainContainer = $("#main-container");
 var recipeContainer = $(".col-lg-9 pb-3");
 // Delete this once once clear function is declared. 
 window.localStorage.clear();
+var searches = JSON.parse(localStorage.getItem("ingredient")) || [];
 
 function getRecipe() {
   var search = $("#search-input").val().trim();
@@ -90,7 +91,7 @@ $("#search-button").on("click", function (event) {
 });
 //function to save & clear search input in local storage
 
-var searches = JSON.parse(localStorage.getItem("ingredient")) || [];
+// var searches = JSON.parse(localStorage.getItem("ingredient")) || [];
 function saveSearch(search) {
   searches.push(search); // don't repeat cities
   localStorage.setItem("ingredient", JSON.stringify(searches));
@@ -98,17 +99,26 @@ function saveSearch(search) {
 }
 function createButtonSearches() {
   $("#history").empty();
+
   // function to loop over the searches and create buttons
   for (let i = searches.length - 1; i >= 0; i--) {
     //use let in for loops
     var button = $("<button>");
     console.log(searches[i]);
     button.text(searches[i]);
-    button.on("click", function () {});
+   
     $("#history").append(button);
+    button.on("click", function (event) {
+      // event.preventDefault();
+      
+      getRecipe(searches[i]);
+
+    });
+
+    //fun
   }
 }
-createButtonSearches();
+// createButtonSearches();
 // function that allow more than one ingredient input
 
 // function to create fav recipe list/page - use quiz challenge as guide
