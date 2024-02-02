@@ -1,6 +1,8 @@
 APIkey = "e7240985d24e036814dfc3709dd38d80";
 var mainContainer = $("#main-container");
 var recipeContainer = $(".col-lg-9 pb-3");
+var cardCardContainerSection = $('<section>');
+cardCardContainerSection.addClass("row mt-3");
 
 var rightRowsForCards = $("#rightColumnsForCards");
 // Delete this once once clear function is declared. 
@@ -13,7 +15,7 @@ function getRecipe() {
     "https://api.edamam.com/api/recipes/v2?type=public&q=" +
     search +
     "&app_id=6530dc18&app_key=e7240985d24e036814dfc3709dd38d80";
-
+    cardCardContainerSection.empty();
   fetch(queryURL)
     .then(function (response) {
       return response.json();
@@ -30,8 +32,7 @@ function getRecipe() {
         var cardContainer = $("<div>");
         // cardContainer.addClass("col-lg-9 pb-3");
 
-        var cardCardContainerSection = $("<section>");
-        cardCardContainerSection.addClass("row mt-3");
+      
 
         var card = $("<div>");
         card.addClass("card mb-3 col-lg-3 col-md-3");
@@ -77,6 +78,7 @@ function getRecipe() {
         cardContainer.append(cardCardContainerSection);
         rightRowsForCards.append(cardContainer);
         mainContainer.append(rightRowsForCards);
+        
       }
     });
 
@@ -84,18 +86,11 @@ function getRecipe() {
   return search;
 }
 // attach click event to the element id
-$("#search-button").on("click", function (event) {
-  event.preventDefault();
-  //grab user ingredient/search input
-  var search = $("#search-input").val().trim();
-  if (!search) return;
-  getRecipe();
-});
 //function to save & clear search input in local storage
 
 // var searches = JSON.parse(localStorage.getItem("ingredient")) || [];
 function saveSearch(search) {
-  searches.push(search); // don't repeat cities
+  searches.push(search); // don't repeat search buttons
   localStorage.setItem("ingredient", JSON.stringify(searches));
   createButtonSearches();
 }
@@ -109,20 +104,25 @@ function createButtonSearches() {
     console.log(searches[i]);
     button.text(searches[i]);
    
-    $("#history").append(button);
+  
     button.on("click", function (event) {
       // event.preventDefault();
-      
       getRecipe(searches[i]);
-
     });
-
+    $("#history").append(button);
     //fun
   }
 }
-// createButtonSearches();
+
+$("#search-button").on("click", function (event) {
+  event.preventDefault();
+  //grab user ingredient/search input
+  var search = $("#search-input").val().trim();
+  if (!search) return;
+  getRecipe();
+});
+createButtonSearches();
 // function that allow more than one ingredient input
 
 // function to create fav recipe list/page - use quiz challenge as guide
 
-// add another API for better quality image display
