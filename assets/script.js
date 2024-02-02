@@ -40,8 +40,14 @@ function getRecipe() {
 
         var cardBody = $("<div>").addClass("col-lg-9 col-md-9");
         var cardTitle = $("<h5>");
+        console.log(data.hits[i].recipe.url);
+        // cardTitle.attr("href", 'target=_blank', data.hits[i].recipe.url);
         cardTitle.text(result.recipe.label);
         cardTitle.addClass("card-title");
+        cardBody.click(function(){
+          window.location = $(this).attr("href", "target=_blank", data.hits[i].recipe.url)
+        })
+        // cardTitle.href = data.hits[i].recipe.url;
         var cardText = $("<p>");
         cardText.text("Type of dish: " + result.recipe.dishType);
         var descriptin = $("<p>");
