@@ -1,0 +1,63 @@
+* {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background-color: rgb(184, 207, 227);
+}
+
+/* header */
+/* header {
+  
+    background-color: #6a5aa5ea;
+  } */
+
+/* aside styling */
+aside {
+  /* width: 350px; */
+  text-align: center;
+}
+
+#form-heading {
+  color: rgb(35, 53, 53);
+}
+
+.form-input {
+  width: 100%;
+  border: solid 3px grey;
+  padding: 4px;
+}
+
+.input-group {
+  flex-direction: column;
+}
+.btn {
+  background-color: rgb(80, 80, 205);
+  color: azure;
+  border-radius: 3px;
+  width: 100%;
+  margin: 10px 0px 10px 0px;
+}
+
+hr {
+  border-bottom: grey solid;
+}
+
+/* #search-button:hoover,
+    .list-group button {
+      transition: 0.3s;
+      color: rgb(116, 181, 238);
+    } */
+
+.list-recipe {
+  /* background-color: rgb(56, 119, 174); */
+
+  font-size: 18px;
+}
+
+.row.mt-3 {
+  background-color: rgb(67, 120, 167);
+  border-radius: 5px;
+}
