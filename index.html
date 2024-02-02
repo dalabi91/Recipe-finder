@@ -1,23 +1,33 @@
 <!DOCTYPE html>
 <html lang="en-gb">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./assets/style.css" />
+    <title>recipe Dashboard</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-  <link rel="stylesheet" href="./assets/style.css" />
-  <title>recipe Dashboard</title>
-</head>
+  <body>
+    <header
+      class="container-fluid text-center text-white bg-dark p-2 recipe-header"
+    >
+      <h1>Recipe Finder</h1>
+    </header>
 
-<body>
-  <header class="container-fluid text-center text-white bg-dark p-2 recipe-header">
-    <h1>Recipe Finder</h1>
-  </header>
-
-  <!-- max-width for ultra wide resolutions -->
-  <div class="container-fluid" id="main-container" style="max-width: 1400px">
-    <div class="row">
+    <!-- max-width for ultra wide resolutions -->
+    <div
+      class="container-fluid row"
+      id="main-container"
+      style="max-width: 1400px"
+    >
+      <!-- <div class="col-lg-3 col-md-3"> -->
       <aside class="col-lg-3 pb-3">
         <h2 id="form-heading" class="mt-1 h3 form-label">
           Search for a Recipe:
@@ -25,10 +35,21 @@
         <form id="search-form" class="form">
           <div class="form-inline form-group">
             <div class="input-group">
-              <input class="form-input recipe-search" type="text" id="search-input" placeholder="Carrot"
-                aria-labelledby="form-heading" aria-controls="recipe ingrident" />
+              <input
+                class="form-input recipe-search"
+                type="text"
+                id="search-input"
+                placeholder="Carrot"
+                aria-labelledby="form-heading"
+                aria-controls="recipe ingrident"
+              />
               <div class="input-group-append">
-                <button type="button" class="btn search-button" id="search-button" aria-label="submit search">
+                <button
+                  type="button"
+                  class="btn search-button"
+                  id="search-button"
+                  aria-label="submit search"
+                >
                   Search
                 </button>
                 <hr class="hr recipe-hr" />
@@ -38,15 +59,19 @@
         </form>
         <div class="list-recipe" id="history"></div>
       </aside>
+      <!-- </div> -->
+      <div class="col-lg-9 col-md-9" id="rightColumnsForCards"></div>
     </div>
-  </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-  <!-- Day.js -->
-  <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
-  <!-- jQuery -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="./assets/script.js"></script>
-</body>
-
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Day.js -->
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="./assets/script.js"></script>
+  </body>
 </html>
