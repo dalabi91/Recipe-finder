@@ -1,8 +1,6 @@
 APIkey = "e7240985d24e036814dfc3709dd38d80";
 var mainContainer = $("#main-container");
 var recipeContainer = $(".col-lg-9 pb-3");
-var cardCardContainerSection = $('<section>');
-cardCardContainerSection.addClass("row mt-3");
 
 var rightRowsForCards = $("#rightColumnsForCards");
 // Delete this once once clear function is declared. 
@@ -15,7 +13,7 @@ function getRecipe() {
     "https://api.edamam.com/api/recipes/v2?type=public&q=" +
     search +
     "&app_id=6530dc18&app_key=e7240985d24e036814dfc3709dd38d80";
-    cardCardContainerSection.empty();
+    rightRowsForCards.empty();
   fetch(queryURL)
     .then(function (response) {
       return response.json();
@@ -28,7 +26,8 @@ function getRecipe() {
 
       for (var i = 0; i < dataLength && i < 3; i++) {
         const result = data.hits[i];
-
+        var cardCardContainerSection = $('<section>');
+        cardCardContainerSection.addClass("row mt-3");
         var cardContainer = $("<div>");
         // cardContainer.addClass("col-lg-9 pb-3");
 
@@ -105,7 +104,7 @@ function createButtonSearches() {
     button.text(searches[i]);
    
   
-    button.on("click", function (event) {
+    button.on("click", function () {
       // event.preventDefault();
       getRecipe(searches[i]);
     });
