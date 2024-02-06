@@ -44,6 +44,10 @@ function getRecipe() {
         cardTitle.attr("target", "_blank")
         cardTitle.attr("href", result.recipe.url)
         cardTitle.addClass("card-title");
+        cardBody.click(function(){
+          window.location = $(this).attr("href", "target=_blank", data.hits[i].recipe.url)
+        })
+        // cardTitle.href = data.hits[i].recipe.url;
         var cardText = $("<p>");
         cardText.text("Type of dish: " + result.recipe.dishType);
         var descriptin = $("<p>");
