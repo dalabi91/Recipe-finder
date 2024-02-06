@@ -1,12 +1,5 @@
-$(document).ready(function(){
-
-  var myInterval = setInterval(function(){
-      dayjs.extend(window.dayjs_plugin_advancedFormat);
-      var currentDate = dayjs().format('dddd MMMM Do YYYY');
-      var currentTime = dayjs()
-      $('.recipe-header-date').text(currentDate + " " + currentTime.format('h:mm:ss a'))
-  }, 1000);
-
+var currentDate = dayjs().format('DD/MM/YYYY');
+$('.recipe-header-date').text(currentDate);
 
 APIkey = "e7240985d24e036814dfc3709dd38d80";
 var mainContainer = $("#main-container");
@@ -101,19 +94,23 @@ function getRecipe() {
 // var searches = JSON.parse(localStorage.getItem("ingredient")) || [];
 function saveSearch(search) {
   searches.push(search); // don't repeat search buttons
-  localStorage.setItem("ingredient", JSON.stringify(searches));
+  localStorage.setItem(currentDate, JSON.stringify(searches));
+  // localStorage.setItem("date", currentDate);
   createButtonSearches();
 }
 function createButtonSearches() {
   $(".list-recipe").empty();
   for (var i = 0; i < searches.length; i++) {
+    for (var key in localStorage) {
+    $('#dropdownMenuButton').text(localStorage.key(i))};
     var searchButton = $("<button>");
-    searchButton.addClass("btn btn-primary");
+    searchButton.addClass("btn btn-primary dropdown-item");
     searchButton.text(searches[i]);
     searchButton.attr("data-search", searches[i]);
+    // $('.dropdown-menu').append(searchButton);
     //if it's already in the array, don't add it again
     if (searches.indexOf(searches[i]) === i) {
-      $(".list-recipe").append(searchButton);
+      $(".dropdown-menu").prepend(searchButton);
     }
 
     //add search functionality to the button
@@ -136,4 +133,3 @@ createButtonSearches();
 // function that allow more than one ingredient input
 
 // function to create fav recipe list/page - use quiz challenge as guide
-});
