@@ -1,3 +1,13 @@
+$(document).ready(function(){
+
+  var myInterval = setInterval(function(){
+      dayjs.extend(window.dayjs_plugin_advancedFormat);
+      var currentDate = dayjs().format('dddd MMMM Do YYYY');
+      var currentTime = dayjs()
+      $('.recipe-header-date').text(currentDate + " " + currentTime.format('h:mm:ss a'))
+  }, 1000);
+
+
 APIkey = "e7240985d24e036814dfc3709dd38d80";
 var mainContainer = $("#main-container");
 var recipeContainer = $(".col-lg-9 pb-3");
@@ -126,3 +136,4 @@ createButtonSearches();
 // function that allow more than one ingredient input
 
 // function to create fav recipe list/page - use quiz challenge as guide
+});
