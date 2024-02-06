@@ -39,10 +39,10 @@ function getRecipe() {
         image.attr("src", result.recipe.image);
 
         var cardBody = $("<div>").addClass("col-lg-9 col-md-9");
-        var cardTitle = $("<h5>");
-        console.log(data.hits[i].recipe.url);
-        // cardTitle.attr("href", 'target=_blank', data.hits[i].recipe.url);
-        cardTitle.text(result.recipe.label);
+        var cardTitle = $("<a>");
+        var aText = cardTitle.text(result.recipe.label);
+        cardTitle.attr("target", "_blank")
+        cardTitle.attr("href", result.recipe.url)
         cardTitle.addClass("card-title");
         cardBody.click(function(){
           window.location = $(this).attr("href", "target=_blank", data.hits[i].recipe.url)
@@ -107,7 +107,7 @@ function createButtonSearches() {
     }
 
     //add search functionality to the button
-    searchButton.on("click", function (event) {
+    $("#search-form").on("submit", function (event) {
       event.preventDefault();
       $("#search-input").val($(this).attr("data-search"));
       getRecipe();
