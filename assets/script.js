@@ -7,7 +7,12 @@ var recipeContainer = $(".col-lg-9 pb-3");
 
 var rightRowsForCards = $("#rightColumnsForCards");
 // Delete this once once clear function is declared.
-window.localStorage.clear();
+var clearSearch = $("#clear-button");
+clearSearch.on("click", function(event){
+  event.preventDefault();
+  window.localStorage.clear();
+
+})
 var searches = JSON.parse(localStorage.getItem("ingredient")) || [];
 
 function getRecipe() {
@@ -100,25 +105,38 @@ function saveSearch(search) {
 }
 function createButtonSearches() {
   $(".list-recipe").empty();
+  $(".list-menu").empty();
   for (var i = 0; i < searches.length; i++) {
     for (var key in localStorage) {
     $('#dropdownMenuButton').text(localStorage.key(i))};
     var searchButton = $("<button>");
-    searchButton.addClass("btn btn-primary dropdown-item");
+    searchButton.addClass("btn btn-primary");
     searchButton.text(searches[i]);
     searchButton.attr("data-search", searches[i]);
+    $(".dropdown-toggle").text(currentDate);
+    $(".dropdown-toggle").attr("date", currentDate);
+
+    
     // $('.dropdown-menu').append(searchButton);
     //if it's already in the array, don't add it again
     if (searches.indexOf(searches[i]) === i) {
-      $(".dropdown-menu").prepend(searchButton);
+      $(".list-menu").append(searchButton);
     }
 
-    //add search functionality to the button
+   // add search functionality when users submit the form by pressing enter key.
     $("#search-form").on("submit", function (event) {
       event.preventDefault();
       $("#search-input").val($(this).attr("data-search"));
       getRecipe();
     });
+     //add search functionality to the button
+    searchButton.on("click", function(event){
+      event.preventDefault();
+      $("#search-input").val($(this).attr("data-search"));
+      getRecipe();
+
+    })
+
   }
 }
 
