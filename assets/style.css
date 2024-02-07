@@ -8,11 +8,10 @@ body {
   background-color: rgb(184, 207, 227);
 }
 
-/* header */
-/* header {
-  
-    background-color: #6a5aa5ea;
-  } */
+header {
+  background-color: rgb(80, 80, 205);
+  /* #095279 */
+}
 
 /* aside styling */
 aside {
@@ -44,32 +43,32 @@ aside {
 hr {
   border-bottom: grey solid;
 }
-#clear-button{
+#clear-button {
   background-color: red !important;
   color: azure;
   border-radius: 3px;
   width: 100%;
   margin: 10px 0px 10px 0px;
 }
-
-/* #search-button:hoover,
-    .list-group button {
-      transition: 0.3s;
-      color: rgb(116, 181, 238);
-    } */
-
 .list-recipe {
-  /* background-color: rgb(56, 119, 174); */
-
   font-size: 18px;
 }
 
 .row.mt-3 {
-  background-color: rgb(67, 120, 167);
+  background-color: rgb(80, 80, 205);
+  color: azure;
   border-radius: 5px;
 }
 
-
-.dropdown-item{
+.dropdown-item {
   border-bottom: 1px solid white;
+}
+
+.card-title {
+  text-decoration: none;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+.card-img-top {
+  height: 100% !important;
 }
