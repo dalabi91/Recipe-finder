@@ -44,6 +44,13 @@ aside {
 hr {
   border-bottom: grey solid;
 }
+#clear-button{
+  background-color: red !important;
+  color: azure;
+  border-radius: 3px;
+  width: 100%;
+  margin: 10px 0px 10px 0px;
+}
 
 /* #search-button:hoover,
     .list-group button {
@@ -60,4 +67,9 @@ hr {
 .row.mt-3 {
   background-color: rgb(67, 120, 167);
   border-radius: 5px;
+}
+
+
+.dropdown-item{
+  border-bottom: 1px solid white;
 }
