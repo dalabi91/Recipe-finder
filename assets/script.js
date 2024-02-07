@@ -1,19 +1,13 @@
-var currentDate = dayjs().format('DD/MM/YYYY');
-$('.recipe-header-date').text(currentDate);
+var currentDate = dayjs().format("DD/MM/YYYY");
+$(".recipe-header-date").text(currentDate);
 
 APIkey = "e7240985d24e036814dfc3709dd38d80";
 var mainContainer = $("#main-container");
 var recipeContainer = $(".col-lg-9 pb-3");
 
 var rightRowsForCards = $("#rightColumnsForCards");
-// Delete this once once clear function is declared.
-var clearSearch = $("#clear-button");
-clearSearch.on("click", function(event){
-  event.preventDefault();
-  window.localStorage.clear();
 
-})
-var searches = JSON.parse(localStorage.getItem("ingredient")) || [];
+var searches = JSON.parse(localStorage.getItem("date")) || [];
 
 function getRecipe() {
   var search = $("#search-input").val().trim();
@@ -37,8 +31,6 @@ function getRecipe() {
         var cardCardContainerSection = $("<section>");
         cardCardContainerSection.addClass("row mt-3");
         var cardContainer = $("<div>");
-        // cardContainer.addClass("col-lg-9 pb-3");
-
         var card = $("<div>");
         card.addClass("card col-lg-3 col-md-3 px-0");
 
@@ -48,42 +40,31 @@ function getRecipe() {
 
         var cardBody = $("<div>").addClass("col-lg-9 col-md-9");
         var cardTitle = $("<a>");
-        var aText = cardTitle.text(result.recipe.label);
-        cardTitle.attr("target", "_blank")
-        cardTitle.attr("href", result.recipe.url)
         cardTitle.addClass("card-title");
-        cardBody.click(function(){
-          window.location = $(this).attr("href", "target=_blank", data.hits[i].recipe.url)
-        })
-        // cardTitle.href = data.hits[i].recipe.url;
+        var aText = cardTitle.text(result.recipe.label);
+        cardTitle.attr("href", result.recipe.url);
+        cardTitle.addClass("card-title");
         var cardText = $("<p>");
         cardText.text("Type of dish: " + result.recipe.dishType);
-        var descriptin = $("<p>");
-        var descriptinList = [];
+        var description = $("<p>");
+        var descriptionList = [];
         result.recipe.ingredients.forEach((ingredient) => {
-          descriptinList.push(" " + ingredient.text);
-          descriptin.text("Ingredients: " + descriptinList);
+          descriptionList.push(" " + ingredient.text);
+          description.text("Ingredients: " + descriptionList);
         });
 
-        // descriptin.text("Ingredients: " + data.hits[i].recipe.ingredients[i].food)
         cardText.addClass("card-text");
 
-        // add image inside card div
         card.append(image);
 
-        // add h5 inside card body
         cardBody.append(cardTitle);
-
         cardBody.append(cardText);
-        cardBody.append(descriptin);
+        cardBody.append(description);
 
-        // // add card inside card container section
         cardCardContainerSection.append(card);
         cardCardContainerSection.append(cardBody);
 
-        // add section inside cardContainer
         recipeContainer.append(cardCardContainerSection);
-
         cardContainer.append(cardCardContainerSection);
         rightRowsForCards.append(cardContainer);
         mainContainer.append(rightRowsForCards);
@@ -93,14 +74,10 @@ function getRecipe() {
   console.log(search);
   return search;
 }
-// attach click event to the element id
-//function to save & clear search input in local storage
 
-// var searches = JSON.parse(localStorage.getItem("ingredient")) || [];
 function saveSearch(search) {
-  searches.push(search); // don't repeat search buttons
+  searches.push(search);
   localStorage.setItem(currentDate, JSON.stringify(searches));
-  // localStorage.setItem("date", currentDate);
   createButtonSearches();
 }
 function createButtonSearches() {
@@ -108,7 +85,8 @@ function createButtonSearches() {
   $(".list-menu").empty();
   for (var i = 0; i < searches.length; i++) {
     for (var key in localStorage) {
-    $('#dropdownMenuButton').text(localStorage.key(i))};
+      $("#dropdownMenuButton").text(localStorage.key(i));
+    }
     var searchButton = $("<button>");
     searchButton.addClass("btn btn-primary");
     searchButton.text(searches[i]);
@@ -116,38 +94,36 @@ function createButtonSearches() {
     $(".dropdown-toggle").text(currentDate);
     $(".dropdown-toggle").attr("date", currentDate);
 
-    
-    // $('.dropdown-menu').append(searchButton);
-    //if it's already in the array, don't add it again
     if (searches.indexOf(searches[i]) === i) {
       $(".list-menu").append(searchButton);
     }
 
-   // add search functionality when users submit the form by pressing enter key.
     $("#search-form").on("submit", function (event) {
       event.preventDefault();
       $("#search-input").val($(this).attr("data-search"));
       getRecipe();
     });
-     //add search functionality to the button
-    searchButton.on("click", function(event){
+
+    searchButton.on("click", function (event) {
       event.preventDefault();
       $("#search-input").val($(this).attr("data-search"));
       getRecipe();
-
-    })
-
+    });
   }
 }
 
 $("#search-button").on("click", function (event) {
   event.preventDefault();
-  //grab user ingredient/search input
+
   var search = $("#search-input").val().trim();
   if (!search) return;
   getRecipe();
 });
 createButtonSearches();
-// function that allow more than one ingredient input
-
-// function to create fav recipe list/page - use quiz challenge as guide
+var clearSearch = $("#clear-button");
+clearSearch.on("click", function (event) {
+  event.preventDefault();
+  window.localStorage.clear();
+  searches = [];
+  $(".list-menu").empty();
+});
